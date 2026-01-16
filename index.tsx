@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { I18nProvider } from './contexts/I18nContext';
+import { I18nProvider } from './contexts/LocaleContext';
 import { CartProvider } from './contexts/CartContext';
 import { WishlistProvider } from './contexts/WishlistContext';
 import { ToastProvider } from './contexts/ToastContext';
@@ -23,59 +23,59 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 // Register Service Worker for Offline Support
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('[Service Worker] Registered', reg))
-      .catch(err => console.log('[Service Worker] Registration failed', err));
-  });
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('[Service Worker] Registered', reg))
+            .catch(err => console.log('[Service Worker] Registration failed', err));
+    });
 }
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
+    throw new Error("Could not find root element to mount to");
 }
 
 const root = ReactDOM.createRoot(rootElement);
 root.render(
-  <React.StrictMode>
-    <ErrorBoundary>
-        <ThemeProvider>
-            <I18nProvider>
-            <CurrencyProvider>
-                <AppProvider>
-                    <ToastProvider>
-                    <AuthProvider>
-                        <AnalyticsProvider>
-                        <SiteContentProvider>
-                            <MarketplaceProvider>
-                            <ProjectsProvider>
-                            <TrainingProvider>
-                                <AdminProvider>
-                                    <NewsProvider>
-                                    <CartProvider>
-                                        <WishlistProvider>
-                                        <PaymentProvider>
-                                            <ComparisonProvider>
-                                            <ChatLogProvider>
-                                                <App />
-                                            </ChatLogProvider>
-                                            </ComparisonProvider>
-                                        </PaymentProvider>
-                                        </WishlistProvider>
-                                    </CartProvider>
-                                    </NewsProvider>
-                                </AdminProvider>
-                            </TrainingProvider>
-                            </ProjectsProvider>
-                            </MarketplaceProvider>
-                        </SiteContentProvider>
-                        </AnalyticsProvider>
-                    </AuthProvider>
-                    </ToastProvider>
-                </AppProvider>
-            </CurrencyProvider>
-            </I18nProvider>
-        </ThemeProvider>
-    </ErrorBoundary>
-  </React.StrictMode>
+    <React.StrictMode>
+        <ErrorBoundary>
+            <ThemeProvider>
+                <I18nProvider>
+                    <CurrencyProvider>
+                        <AppProvider>
+                            <ToastProvider>
+                                <AuthProvider>
+                                    <AnalyticsProvider>
+                                        <SiteContentProvider>
+                                            <MarketplaceProvider>
+                                                <ProjectsProvider>
+                                                    <TrainingProvider>
+                                                        <AdminProvider>
+                                                            <NewsProvider>
+                                                                <CartProvider>
+                                                                    <WishlistProvider>
+                                                                        <PaymentProvider>
+                                                                            <ComparisonProvider>
+                                                                                <ChatLogProvider>
+                                                                                    <App />
+                                                                                </ChatLogProvider>
+                                                                            </ComparisonProvider>
+                                                                        </PaymentProvider>
+                                                                    </WishlistProvider>
+                                                                </CartProvider>
+                                                            </NewsProvider>
+                                                        </AdminProvider>
+                                                    </TrainingProvider>
+                                                </ProjectsProvider>
+                                            </MarketplaceProvider>
+                                        </SiteContentProvider>
+                                    </AnalyticsProvider>
+                                </AuthProvider>
+                            </ToastProvider>
+                        </AppProvider>
+                    </CurrencyProvider>
+                </I18nProvider>
+            </ThemeProvider>
+        </ErrorBoundary>
+    </React.StrictMode>
 );
